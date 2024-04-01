@@ -9,15 +9,6 @@ transacciones_df = pd.read_parquet('https://datamxdevsa.blob.core.windows.net/cr
 saldos_df = pd.read_parquet('https://datamxdevsa.blob.core.windows.net/crskmex000/DSTest/0transferencias.parquet')
 clientes_df = pd.read_parquet('https://datamxdevsa.blob.core.windows.net/crskmex000/DSTest/0clientes.parquet')
 
-encabezados = transacciones_df.columns
-print(encabezados)
-
-encabezados1 = saldos_df.columns
-print(encabezados1)
-
-encabezados2 = clientes_df.columns
-print(encabezados2)
-
 # Se unen las tablas en un solo DataFrame
 merged_df = pd.merge(transacciones_df, saldos_df, on=['Contrato'])   #, 'CLIENTE', 'PRODUCTO'])
 merged_df = pd.merge(merged_df, clientes_df, on='NroDocum')
