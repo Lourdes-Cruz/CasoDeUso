@@ -12,3 +12,6 @@ clientes_df = pd.read_parquet('https://datamxdevsa.blob.core.windows.net/crskmex
 # Se unen las tablas en un solo DataFrame
 merged_df = pd.merge(transacciones_df, saldos_df, on=['Contrato'])   #, 'CLIENTE', 'PRODUCTO'])
 merged_df = pd.merge(merged_df, clientes_df, on='NroDocum')
+
+# Se calcula el saldo total por cliente
+saldo_total = merged_df.groupby('NroDocum')['ValorNeto'].mean()
